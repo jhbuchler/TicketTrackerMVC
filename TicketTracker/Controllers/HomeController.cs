@@ -56,5 +56,18 @@ namespace TicketTracker.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        public IActionResult Encrypter()
+        {
+            var evm = new EncrypterViewModel();
+            return View(evm);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Encrypter([Bind("Shift, StringToEncrypt")] EncrypterViewModel evm)
+        {
+            return View();
+        }
     }
 }
